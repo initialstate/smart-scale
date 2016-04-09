@@ -12,7 +12,7 @@ from random import randint
 # --------- User Settings ---------
 BUCKET_NAME = ":apple: My Weight History"
 BUCKET_KEY = "weight11"
-ACCESS_KEY = "P8L1bMdMkdaqIVrHur5qZUWTB94cAAxN"
+ACCESS_KEY = "PLACE YOUR INITIAL STATE ACCESS KEY HERE"
 METRIC_UNITS = False
 WEIGHT_SAMPLES = 500
 THROWAWAY_SAMPLES = 100
