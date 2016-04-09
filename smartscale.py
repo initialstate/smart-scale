@@ -90,6 +90,7 @@ class EventProcessor:
         msg.append("I choked on a carrot today and all I could think was I bet a doughnut wouldn't have done this to me. U lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ")")
         msg.append("Asking me if I am hungry is like asking me if I want money. You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
         msg.append("I think my soulmate might be carbs. You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
+        msg.append("Great job! We made a video about your progress. Check it out at https://youtu.be/dQw4w9WgXcQ. U lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ").")
         return msg[randint(0, len(msg)-1)]
 
     def messageWeighMore(self, weight, weightChange, unit):
