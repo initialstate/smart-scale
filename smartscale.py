@@ -7,7 +7,7 @@ import bluetooth
 import sys
 import subprocess
 from ISStreamer.Streamer import Streamer
-from random import randint
+from random import randint, choice
 
 # --------- User Settings ---------
 BUCKET_NAME = ":apple: My Weight History"
@@ -37,7 +37,27 @@ BOTTOM_LEFT = 3
 BLUETOOTH_NAME = "Nintendo RVL-WBC-01"
 
 
+# ------ Messages -----------------
+weigh_first_messages = [
+    "What do vegan zombies eat? Gggggrrrraaaaaaaiiiiinnnnnssssss❗️ ",
+    "Guys that wear skinny jeans took the phrase, getting into her pants, the wrong way. 👖",
+    "Why do watermelons have fancy weddings? Because they cantaloupe. 🍉",
+    "My friend thinks he is smart. He told me an onion is the only food that makes you cry, so I threw a coconut at his face.",
+    "Turning vegan is a big missed steak. 😜",
+    "Is there anything more capitalist than a peanut with a top hat, cane, and monocle selling you other peanuts to eat?"
+    "How has the guy who makes Capri Sun straw openings not been up for a job performance review?",
+    "How do I like my eggs? Umm, in a cake. 🍰",
+    "Billy has 32 pieces of bacon and eats 28. What does he have now? Happiness. Billy has happiness.",
+    "Diet day 1: I have removed all the bad food from the house. It was delicious.",
+    "When I see you, I am happy, I love you not for what you look like, but for what you have inside. -Me to my fridge.",
+    "Netflix has 7 letters. So does foooood. Coincidence? I think not.",
+    "Studies show that if there is going to be free food, I will show up 100 percent of the time.",
+    "I can multitask. I can eat breakfast and think about lunch at the same time."
+]
+
+
 class EventProcessor:
+
     def __init__(self):
         self._measured = False
         self.done = False
@@ -55,22 +75,11 @@ class EventProcessor:
     def messageWeighFirst(self, weight, unit):
         weight = float("{0:.2f}".format(weight))
         msg = []
-        msg.append("What do vegan zombies eat? Gggggrrrraaaaaaaiiiiinnnnnssssss❗️ You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Guys that wear skinny jeans took the phrase, getting into her pants, the wrong way. 👖 You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Why do watermelons have fancy weddings? Because they cantaloupe. 🍉 You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Why did the can crusher quit his job? Because it was soda pressing. 😜 You weigh " + str(weight) + " " + unit + "!")
-        msg.append("My friend thinks he is smart. He told me an onion is the only food that makes you cry, so I threw a coconut at his face. You = " + str(weight) + " " + unit)
-        msg.append("Turning vegan is a big missed steak. 😜 You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Is there anything more capitalist than a peanut with a top hat, cane, and monocle selling you other peanuts to eat? You weigh " + str(weight) + " " + unit + "!")
-        msg.append("How has the guy who makes Capri Sun straw openings not been up for a job performance review? You weigh " + str(weight) + " " + unit + "!")
-        msg.append("How do I like my eggs? Umm, in a cake. 🍰 You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Billy has 32 pieces of bacon and eats 28. What does he have now? Happiness. Billy has happiness. You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Diet day 1: I have removed all the bad food from the house. It was delicious. You weigh " + str(weight) + " " + unit + "!")
-        msg.append("When I see you, I am happy, I love you not for what you look like, but for what you have inside. -Me to my fridge. You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Netflix has 7 letters. So does foooood. Coincidence? I think not. You weigh " + str(weight) + " " + unit + "!")
-        msg.append("Studies show that if there is going to be free food, I will show up 100 percent of the time. You weigh " + str(weight) + " " + unit + "!")
-        msg.append("I can multitask. I can eat breakfast and think about lunch at the same time. You weigh " + str(weight) + " " + unit + "!")
-        return msg[randint(0, len(msg)-1)]
+        for message in weigh_first_messages:
+            msg.append('{} You weigh {} {}!'.format(message,
+                                                    weight,
+                                                    unit))
+        return choice(msg)
 
     def messageWeighLess(self, weight, weightChange, unit):
         weight = float("{0:.2f}".format(weight))
