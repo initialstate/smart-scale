@@ -75,6 +75,31 @@ weigh_less_messages = [
     "Great job! We made a video about your progress. Check it out at https://youtu.be/dQw4w9WgXcQ."
 ]
 
+weigh_more_messages_1 = [
+    "I didn't want to sugarcoat it b/c I was afraid you would eat that too. 🍦",
+    "I hated telling you that b/c you apparently have enough on your plate. 🍽",
+    "You probably just forgot to go to the gym. That's like what, 8 years in a row now? 🏋",
+    "The good news is that you are getting easier to see! 🔭",
+    "YOLO! (You Obviously Love Oreos) 💛",
+    "The good news is that there is more of you to love! 💛",
+    "💩",
+    "I gave up desserts once. It was the worst 20 minutes of my life. 🍪 ",
+    "I am sure it is all muscle. 💪 "
+]
+
+weigh_more_messages_2 = [
+    "You are in shape ... round is a shape 🍩.",
+    "Stressed spelled backwards is desserts, but I bet you already knew that. 🍰",
+    "You should name your dog Five Miles so you can honestly say you walk Five Miles every day. 🐶",
+    "Instead of a John, call your bathroom a Jim so you can honstely say you go to the Jim every morning. 🚽",
+    "When you phone dings, do people think you are backing up? 🚚",
+    "Always eat alone. If people never see you eat, they might believe you when you say you have a thyroid problem.",
+    "After exercising, I always eat a pizza ... just kidding, I don't exercise. 🍕",
+    "If you are what you eat, perhaps you should eat a skinny person. 😱",
+    "I never run with scissors. OK, those last two words were unnecessary. ✂️ ",
+    "Yeah, I'm into fitness... Fit'ness whole burger in my mouth. 🍔👅"
+]
+
 
 class EventProcessor:
 
@@ -107,27 +132,17 @@ class EventProcessor:
     def messageWeighMore(self, weight, weightChange, unit):
         weight = float("{0:.2f}".format(weight))
         weightChange = float("{0:.2f}".format(weightChange))
-        msg = []
-        msg.append("You are in shape ... round is a shape 🍩. You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). I didn't want to sugarcoat it b/c I was afraid you would eat that too. 🍦")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). I hated telling you that b/c you apparently have enough on your plate. 🍽")
-        msg.append("Stressed spelled backwards is desserts, but I bet you already knew that. 🍰 You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). You probably just forgot to go to the gym. That's like what, 8 years in a row now? 🏋")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). The good news is that you are getting easier to see! 🔭")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). YOLO! (You Obviously Love Oreos) 💛")
-        msg.append("You should name your dog Five Miles so you can honestly say you walk Five Miles every day. 🐶 You gained " + str(weightChange) + " " + unit + " (" + str(weight) + " " + unit + ")")
-        msg.append("Instead of a John, call your bathroom a Jim so you can honstely say you go to the Jim every morning. 🚽 You gained " + str(weightChange) + " " + unit + " (" + str(weight) + " " + unit + ")")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). The good news is that there is more of you to love! 💛")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). 💩")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). I gave up desserts once. It was the worst 20 minutes of my life. 🍪 ")
-        msg.append("When you phone dings, do people think you are backing up? 🚚 You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("Always eat alone. If people never see you eat, they might believe you when you say you have a thyroid problem. You gained " + str(weightChange) + " " + unit + " (" + str(weight) + ")")
-        msg.append("After exercising, I always eat a pizza ... just kidding, I don't exercise. 🍕 You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("If you are what you eat, perhaps you should eat a skinny person. 😱 You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("I never run with scissors. OK, those last two words were unnecessary. ✂️ You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + "). I am sure it is all muscle. 💪 ")
-        msg.append("Yeah, I'm into fitness... Fit'ness whole burger in my mouth. 🍔👅 You gained " + str(weightChange) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        return msg[randint(0, len(msg)-1)]
+        choose = randint(1, 2)
+        if choose == 1:
+            message = choice(weigh_more_messages_1)
+            return 'You gained {} {} since last time ({} {}). {}'.format(
+                    weightChange, unit, weight, unit, message)
+        else:
+            message = choice(weigh_more_messages_2)
+            return '{} You gained {} {} since last time ({} {}).'.format(
+                    message, weightChange, unit, weight, unit)
+
+
 
     def messageWeighSame(self, weight, weightChange, unit):
         weight = float("{0:.2f}".format(weight))
