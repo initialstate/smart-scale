@@ -100,6 +100,23 @@ weigh_more_messages_2 = [
     "Yeah, I'm into fitness... Fit'ness whole burger in my mouth. 🍔👅"
 ]
 
+weigh_same_messages = [
+    "Congratulations on nothing ... you practically weigh the same since last time. ",
+    "What do you call a fake noodle? An impasta. 🍝 Your weight didn't change much since last time. ",
+    "Bacon is low-carb and gluten-free ... just sayin'. 🐷 Your weight didn't change much since last time. ",
+    "I may look like I am deep in thought, but I'm really just thinking about what I'm going to eat later. ",
+    "I haven't eaten an apple in days. The doctors are closing in. My barricade won't last. Tell my family I love th-. ",
+    "Ban pre-shredded cheese. Make America grate again. 🧀 Your weight didn't change much since last time. ",
+    "If I share my food with you, it's either because I love you a lot or because it fell on the floor. ",
+    "The sad moment you lose a chip in the dip so you send in a recon chip and that breaks too. ",
+    "I only want two things: 1 - To lose weight. 2 - To eat. ",
+    "I enjoy long, romantic walks to the fridge. ",
+    "I just don't wanna look back and think, I could have eaten that. ",
+    "Most people want a perfect relationship. I just want a hamburger that looks like the one in commercials. ",
+    "Love is in the air ... or is that bacon? 🐷 Your weight didn't change much since last time. ",
+    "That is too much bacon. -Said No One Ever 🐷 Your weight didn't change much since last time. "
+]
+
 
 class EventProcessor:
 
@@ -142,27 +159,12 @@ class EventProcessor:
             return '{} You gained {} {} since last time ({} {}).'.format(
                     message, weightChange, unit, weight, unit)
 
-
-
     def messageWeighSame(self, weight, weightChange, unit):
         weight = float("{0:.2f}".format(weight))
         weightChange = float("{0:.2f}".format(weightChange))
-        msg = []
-        msg.append("Congratulations on nothing ... you practically weigh the same since last time. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("What do you call a fake noodle? An impasta. 🍝 Your weight didn't change much since last time. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("Bacon is low-carb and gluten-free ... just sayin'. 🐷 Your weight didn't change much since last time. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("I may look like I am deep in thought, but I'm really just thinking about what I'm going to eat later. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("I haven't eaten an apple in days. The doctors are closing in. My barricade won't last. Tell my family I love th-. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("Ban pre-shredded cheese. Make America grate again. 🧀 Your weight didn't change much since last time. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("If I share my food with you, it's either because I love you a lot or because it fell on the floor. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("The sad moment you lose a chip in the dip so you send in a recon chip and that breaks too. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("I only want two things: 1 - To lose weight. 2 - To eat. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("I enjoy long, romantic walks to the fridge. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("I just don't wanna look back and think, I could have eaten that. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("Most people want a perfect relationship. I just want a hamburger that looks like the one in commercials. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("Love is in the air ... or is that bacon? 🐷 Your weight didn't change much since last time. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        msg.append("That is too much bacon. -Said No One Ever 🐷 Your weight didn't change much since last time. " + str(weight) + " " + unit + " (" + str(weightChange) + " " + unit + " change)")
-        return msg[randint(0, len(msg)-1)]
+        message = choice(weigh_same_messages)
+        return '{} {} {} ({} {} change)'.format(
+                message, weight, unit, weightChange, unit)
 
     def mass(self, event):
         if (event.totalWeight > 2):
