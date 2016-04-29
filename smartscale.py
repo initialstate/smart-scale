@@ -55,6 +55,26 @@ weigh_first_messages = [
     "I can multitask. I can eat breakfast and think about lunch at the same time."
 ]
 
+weigh_less_messages = [
+    "You're getting so skinny that if someone slaps you, they'll get a paper cut. 👋",
+    "Wow that Lean Cuisine really filled me up - Said No One Ever. 🍲",
+    "Whoever said nothing tastes as good as skinny feels has clearly never had 🍕 or 🍷 or 🍰.",
+    "I know milk does a body good, but damn, how much have you been drinking? 😍",
+    "Are you from Tennessee? Because you're the only ten I see! 😍",
+    "If you were words on a page, you'd be what they call FINE PRINT! 📖",
+    "If you were a transformer, you'd be a HOT-obot, and your name would be Optimus Fine! 😍",
+    "WTF! (where's the food) 🍗",
+    "It's a lot easier to stop eating carbs once you've come to terms with living a joyless life full of anger and sadness.",
+    "The Roomba just beat me to a piece of popcorn on the floor. This is how the war against the machines begins.",
+    "I won't be impressed with technology until I can download food.",
+    "I choked on a carrot today and all I could think was I bet a doughnut wouldn't have done this to me.",
+    "I won't be impressed with technology until I can download food.",
+    "I choked on a carrot today and all I could think was I bet a doughnut wouldn't have done this to me.",
+    "Asking me if I am hungry is like asking me if I want money.",
+    "I think my soulmate might be carbs.",
+    "Great job! We made a video about your progress. Check it out at https://youtu.be/dQw4w9WgXcQ."
+]
+
 
 class EventProcessor:
 
@@ -74,33 +94,15 @@ class EventProcessor:
 
     def messageWeighFirst(self, weight, unit):
         weight = float("{0:.2f}".format(weight))
-        msg = []
-        for message in weigh_first_messages:
-            msg.append('{} You weigh {} {}!'.format(message,
-                                                    weight,
-                                                    unit))
-        return choice(msg)
+        message = choice(weigh_first_messages)
+        return '{} You weigh {} {}!'.format(message, weight, unit)
 
     def messageWeighLess(self, weight, weightChange, unit):
         weight = float("{0:.2f}".format(weight))
         weightChange = float("{0:.2f}".format(weightChange))
-        msg = []
-        msg.append("You're getting so skinny that if someone slaps you, they'll get a paper cut. 👋 You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("Wow that Lean Cuisine really filled me up - Said No One Ever. 🍲 You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("Whoever said nothing tastes as good as skinny feels has clearly never had 🍕 or 🍷 or 🍰. You lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ").")
-        msg.append("I know milk does a body good, but damn, how much have you been drinking? 😍 You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("Are you from Tennessee? Because you're the only ten I see! 😍 You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("If you were words on a page, you'd be what they call FINE PRINT! 📖 You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("If you were a transformer, you'd be a HOT-obot, and your name would be Optimus Fine! 😍 You lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ").")
-        msg.append("WTF! (where's the food) 🍗 You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("It's a lot easier to stop eating carbs once you've come to terms with living a joyless life full of anger and sadness. U lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ")")
-        msg.append("The Roomba just beat me to a piece of popcorn on the floor. This is how the war against the machines begins. U lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ")")
-        msg.append("I won't be impressed with technology until I can download food. You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("I choked on a carrot today and all I could think was I bet a doughnut wouldn't have done this to me. U lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ")")
-        msg.append("Asking me if I am hungry is like asking me if I want money. You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("I think my soulmate might be carbs. You lost " + str(abs(weightChange)) + " " + unit + " since last time (" + str(weight) + " " + unit + ").")
-        msg.append("Great job! We made a video about your progress. Check it out at https://youtu.be/dQw4w9WgXcQ. U lost " + str(abs(weightChange)) + " " + unit + " (" + str(weight) + " " + unit + ").")
-        return msg[randint(0, len(msg)-1)]
+        message = choice(weigh_less_messages)
+        return '{} You lost {} {} since last time ({} {})'.format(
+                message, abs(weightChange), unit, weight, unit)
 
     def messageWeighMore(self, weight, weightChange, unit):
         weight = float("{0:.2f}".format(weight))
