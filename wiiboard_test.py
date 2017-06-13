@@ -7,7 +7,7 @@ import sys
 import subprocess
 
 # --------- User Settings ---------
-WEIGHT_SAMPLES = 500
+WEIGHT_SAMPLES = 250
 # ---------------------------------
 
 # Wiiboard Parameters
