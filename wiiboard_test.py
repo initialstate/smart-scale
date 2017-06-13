@@ -36,6 +36,9 @@ class EventProcessor:
         self._events = range(WEIGHT_SAMPLES)
 
     def mass(self, event):
+        if self._measureCnt == 1:
+            print "Measuring ..."
+        
         if (event.totalWeight > 2):
             self._events[self._measureCnt] = event.totalWeight*2.20462
             self._measureCnt += 1
