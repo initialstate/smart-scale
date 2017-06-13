@@ -14,8 +14,8 @@ BUCKET_NAME = ":apple: My Weight History"
 BUCKET_KEY = "weight11"
 ACCESS_KEY = "PLACE YOUR INITIAL STATE ACCESS KEY HERE"
 METRIC_UNITS = False
-WEIGHT_SAMPLES = 500
-THROWAWAY_SAMPLES = 100
+WEIGHT_SAMPLES = 250
+THROWAWAY_SAMPLES = 75
 WEIGHT_HISTORY = 7
 # ---------------------------------
 
@@ -142,6 +142,7 @@ class EventProcessor:
         if (event.totalWeight > 2):
             if self._measureCnt < WEIGHT_SAMPLES:
                 if self._measureCnt == 1:
+                    print "Measuring ..."
                     self.streamer.log("Update", "Measuring ...")
                     self.streamer.flush()
 
