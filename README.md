@@ -1,4 +1,4 @@
-#A Hackable, Weight Tracking, Text Messaging Scale with a Sense of Humor
+# A Hackable, Weight Tracking, Text Messaging Scale with a Sense of Humor
 
 ![Alert Setup](https://github.com/InitialState/smart-scale/wiki/img/smart-scale.jpg)
 
