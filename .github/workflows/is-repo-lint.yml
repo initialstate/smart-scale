@@ -150,17 +150,17 @@ jobs:
         if: steps.codeql-analysis_file.outputs.file_exists == 'false'
         run: echo codeql-analysis file does not exist!
 
-  check-for-personal-access-token:
+  check-for-cla-bot-gh-access-token:
     needs: public-or-private-repo
     if: needs.public-or-private-repo.outputs.repostate == 'public'
     runs-on: ubuntu-latest
     steps:
 
-      - name: Check for missing PERSONAL_ACCESS_TOKEN
+      - name: Check for missing CLA_BOT_GH_ACCESS_TOKEN
         env:
-            MY_KEY: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            MY_KEY: ${{ secrets.CLA_BOT_GH_ACCESS_TOKEN }}
         if: "${{ env.MY_KEY == '' }}"
         uses: actions/github-script@v6
         with:
           script: |
-            core.setFailed('PERSONAL_ACCESS_TOKEN secret is missing. It is needed to successfully run the CLA assistant.')
+            core.setFailed('CLA_BOT_GH_ACCESS_TOKEN secret is missing. It is needed to successfully run the CLA assistant.')
