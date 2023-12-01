@@ -160,7 +160,7 @@ jobs:
         env:
             MY_KEY: ${{ secrets.CLA_BOT_GH_ACCESS_TOKEN }}
         if: "${{ env.MY_KEY == '' }}"
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             core.setFailed('CLA_BOT_GH_ACCESS_TOKEN secret is missing. It is needed to successfully run the CLA assistant.')
